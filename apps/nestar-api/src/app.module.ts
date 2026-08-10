@@ -9,6 +9,7 @@ import { ComponentsModule } from './components/components.module';
 import { DatabaseModule } from './database/database.module';
 
 @Module({
+	// 2
 	imports: [
 		ConfigModule.forRoot(),
 		GraphQLModule.forRoot({
