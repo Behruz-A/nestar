@@ -17,6 +17,8 @@ import { DatabaseModule } from './database/database.module';
 			playground: true,
 			uploads: false,
 			autoSchemaFile: true,
+			introspection: true, // ← qo'shing
+			csrfPrevention: false,
 		}),
 		ComponentsModule,
 		DatabaseModule,
