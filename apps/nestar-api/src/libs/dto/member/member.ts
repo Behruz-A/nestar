@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { MemberAuthType, MemberType } from '../../enums/member.enum';
+import { MemberAuthType, MemberStatus, MemberType } from '../../enums/member.enum';
 import type { ObjectId } from 'mongoose';
 
 @ObjectType()
@@ -11,7 +11,7 @@ export class Member {
 	memberType!: MemberType;
 
 	@Field(() => String)
-	memberStatus!: MemberType;
+	memberStatus!: MemberStatus;
 
 	@Field(() => MemberAuthType)
 	memberAuthType!: MemberAuthType;
