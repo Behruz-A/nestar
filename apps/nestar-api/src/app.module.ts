@@ -11,8 +11,9 @@ import { DatabaseModule } from './database/database.module';
 @Module({
 	// 2
 	imports: [
-		ConfigModule.forRoot(),
+		ConfigModule.forRoot(), // env
 		GraphQLModule.forRoot({
+			// graphql ni chaqirib olebmiz
 			driver: ApolloDriver,
 			playground: true,
 			uploads: false,
