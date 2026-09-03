@@ -38,15 +38,22 @@ export class MemberResolver {
 	@Roles(MemberType.USER, MemberType.AGENT)
 	@UseGuards(RolesGuard)
 	@Query(() => String)
-	public async checkAuthRoles(@AuthMember() authMember: Member): Promise<string> {
+	public async checkAuthRoles(
+		@AuthMember() //
+		authMember: Member,
+	): Promise<string> {
 		console.log('Query: checkAuthRoles');
 
-		return `Hi ${authMember.memberNick}, you are${authMember.memberType} (memberId: ${authMember._id})`;
+		return `Hi ${authMember.memberNick}, //
+		you are${authMember.memberType} (memberId: ${authMember._id})`;
 	}
 
 	@UseGuards(AuthGuard)
 	@Query(() => String)
-	public async checkAuth(@AuthMember('memberNick') memberNick: string): Promise<string> {
+	public async checkAuth(
+		@AuthMember('memberNick') //
+		memberNick: string,
+	): Promise<string> {
 		console.log('Query: checkAuth');
 		console.log('memberNick:', memberNick);
 		return `Hi ${memberNick}`;
@@ -67,7 +74,11 @@ export class MemberResolver {
 
 	@UseGuards(WithoutGuard)
 	@Query(() => Member)
-	public async getMember(@Args('memberId') input: string, @AuthMember('_id') memberId: ObjectId): Promise<Member> {
+	public async getMember(
+		@Args('memberId') //
+		input: string,
+		@AuthMember('_id') memberId: ObjectId,
+	): Promise<Member> {
 		console.log('Mutation: getMember');
 		const targetId = shapeIntoMongoObjectId(input);
 		return await this.memberService.getMember(memberId, targetId);
@@ -75,7 +86,11 @@ export class MemberResolver {
 
 	@UseGuards(WithoutGuard)
 	@Query(() => Members)
-	public async getAgents(@Args('input') input: AgentsInquiry, @AuthMember('_id') memberId: ObjectId): Promise<Members> {
+	public async getAgents(
+		@Args('input') //
+		input: AgentsInquiry,
+		@AuthMember('_id') memberId: ObjectId,
+	): Promise<Members> {
 		console.log('Query: getAgents');
 		return await this.memberService.getAgents(memberId, input);
 	}
@@ -97,7 +112,10 @@ export class MemberResolver {
 	@Roles(MemberType.ADMIN)
 	@UseGuards(RolesGuard)
 	@Query(() => Members)
-	public async getAllMembersByAdmin(@Args('input') input: MembersInquiry): Promise<Members> {
+	public async getAllMembersByAdmin(
+		@Args('input') //
+		input: MembersInquiry,
+	): Promise<Members> {
 		console.log('Query:  getAllMembersByAdmin');
 		return await this.memberService.getAllMembersByAdmin(input);
 	}
@@ -106,7 +124,10 @@ export class MemberResolver {
 	@Roles(MemberType.ADMIN)
 	@UseGuards(RolesGuard)
 	@Mutation(() => Member)
-	public async updateMemberByAdmin(@Args('input') input: MemberUpdate): Promise<Member> {
+	public async updateMemberByAdmin(
+		@Args('input') //
+		input: MemberUpdate,
+	): Promise<Member> {
 		console.log('Mutation: updateMemberByAdmin');
 		return await this.memberService.updateMemberByAdmin(input);
 	}
