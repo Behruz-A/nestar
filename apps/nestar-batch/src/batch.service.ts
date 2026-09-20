@@ -34,6 +34,8 @@ export class BatchService {
 			.exec();
 	}
 
+	// recreate uploads
+
 	public async batchTopProperties(): Promise<void> {
 		const properties: Property[] = await this.propertyModel
 			.find({
