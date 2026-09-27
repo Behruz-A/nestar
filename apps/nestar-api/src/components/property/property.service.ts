@@ -292,10 +292,15 @@ export class PropertyService {
 
 	public async propertyStatsEditor(input: StatisticModifier): Promise<Property> {
 		const { _id, targetKey, modifier } = input;
+		const statsModifier: T = { [targetKey]: modifier };
+
+		if (targetKey === 'propertyLikes') statsModifier.propertyRank = modifier * 2;
+		else if (targetKey === 'propertyViews') statsModifier.propertyRank = modifier;
+
 		return (await this.propertyModel
 			.findByIdAndUpdate(
 				_id,
-				{ $inc: { [targetKey]: modifier } },
+				{ $inc: statsModifier },
 				{
 					new: true,
 				},
